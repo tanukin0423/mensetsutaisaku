@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>面接対策サイト - ステップ2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+            h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+    background: linear-gradient(45deg, #39aa3d, #6dc971);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center; /* テキストをセンターに配置 */
+}
+        
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>面接対策サイト - ステップ2</h1>
+        <h2>企業情報</h2>
+        <textarea id="companyInfo" placeholder="ステップ1で収集した企業情報をここに貼り付けてください"></textarea>
+        
+        <h2>応募者情報</h2>
+        <textarea id="motivation" placeholder="志望動機を入力してください・箇条書きも可"></textarea>
+        <textarea id="gakuchika" placeholder="学生時代に力を入れたことを入力してください・箇条書きも可"></textarea>
+        <textarea id="selfPR" placeholder="自己PRを入力してください・箇条書きも可"></textarea>
+        <textarea id="partTimeJob" placeholder="アルバイト経験を入力してください・箇条書きも可"></textarea>
+        
+        <button onclick="generatePrompt()">プロンプト生成</button>
+        
+        <textarea id="generatedPrompt" readonly></textarea>
+        <button onclick="copyPrompt()">プロンプトをコピー</button>
+    </div>
+
+    <script>
+        function generatePrompt() {
+            const companyInfo = document.getElementById('companyInfo').value;
+            const motivation = document.getElementById('motivation').value;
+            const gakuchika = document.getElementById('gakuchika').value;
+            const selfPR = document.getElementById('selfPR').value;
+            const partTimeJob = document.getElementById('partTimeJob').value;
+
+            const prompt = `以下の情報を基に、一次面接用、二次面接用、最終面接用のそれぞれ10個の想定問答を作成してください。回答は具体的で訴求力のあるものにし、それぞれ200文字で作成してください。
+
+企業情報：
+${companyInfo}
+
+応募者情報：
+志望動機：${motivation}
+学生時代に力を入れたこと：${gakuchika}
+自己PR：${selfPR}
+アルバイト経験：${partTimeJob}
+
+各面接段階で10個の質問と模範回答を作成し、質問の難易度や深さを段階に応じて調整してください。`;
+
+            document.getElementById('generatedPrompt').value = prompt;
+        }
+
+        function copyPrompt() {
+            const promptText = document.getElementById('generatedPrompt');
+            promptText.select();
+            document.execCommand('copy');
+            alert('プロンプトがクリップボードにコピーされました。');
+        }
+    </script>
+</body>
+</html>

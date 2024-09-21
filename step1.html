@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>面接対策サイト - ステップ1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+    background: linear-gradient(45deg, #50db62, #78c376);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center; /* テキストをセンターに配置 */
+}
+        textarea {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>面接対策サイト - ステップ1</h1>
+        <p>応募企業の情報を収集するためのAIプロンプトを生成します。</p>
+        
+        <!-- 企業名入力欄 -->
+        <input type="text" id="companyName" placeholder="企業名を入力してください">
+
+        <textarea id="prompt" readonly></textarea>
+        <button onclick="generatePrompt()">プロンプトを生成</button>
+        <button onclick="copyPrompt()">プロンプトをコピー</button>
+
+        <p>このプロンプトをAIに入力して、応募企業の詳細情報を収集してください。</p>
+    </div>
+
+    <script>
+        function generatePrompt() {
+            const companyName = document.getElementById('companyName').value || '[企業名]';
+            const prompt = `以下の項目について、${companyName}の詳細情報を提供してください：
+
+1. 業界情報
+2. 業界の成長性
+3. 社会での役割と重要性
+4. 企業概要
+5. 企業理念
+6. 企業の強みと弱み
+7. 特徴や独自性
+8. 同業他社との比較
+9. 主な職種と仕事内容
+10. 各職種に求める人物像
+11. 求めるスキルや資格
+12. 採用選考のステップ
+13. 参考となる志望動機や、自己PR、ガクチカに基づいた具体例。内容は４００文字程度。
+14. 応募動機に基づく具体例
+15. 企業文化と働き方
+16. 将来の成長機会とキャリアパス
+17. 最新のトレンドや業界動向
+
+できるだけ具体的で詳細な情報を提供し、学生が面接準備に活用できるようにしてください。`;
+
+            document.getElementById('prompt').value = prompt;
+        }
+
+        function copyPrompt() {
+            const promptText = document.getElementById('prompt');
+            promptText.select();
+            document.execCommand('copy');
+            alert('プロンプトがクリップボードにコピーされました。');
+        }
+    </script>
+</body>
+</html>
