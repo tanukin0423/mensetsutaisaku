@@ -21,17 +21,14 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         h1 {
-            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+            background: linear-gradient(45deg, #50db62, #78c376);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
         }
-        h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #fff;
-    background: linear-gradient(45deg, #50db62, #78c376);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center; /* テキストをセンターに配置 */
-}
         textarea {
             width: 100%;
             height: 300px;
@@ -39,6 +36,7 @@
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            box-sizing: border-box;
         }
         input {
             width: 100%;
@@ -46,6 +44,7 @@
             margin-bottom: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            box-sizing: border-box;
         }
         button {
             background-color: #4CAF50;
@@ -54,9 +53,32 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-bottom: 10px;
+            width: 100%;
         }
         button:hover {
             background-color: #45a049;
+        }
+
+        /* レスポンシブデザインの追加 */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2rem;
+                padding: 15px;
+            }
+            textarea {
+                height: 200px;
+            }
+            button {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
         }
     </style>
 </head>
@@ -65,16 +87,15 @@
         <h1>面接対策サイト - ステップ1</h1>
         <p>応募企業の情報を収集するためのAIプロンプトを生成します。</p>
         
-        <!-- 企業名入力欄 -->
         <input type="text" id="companyName" placeholder="企業名を入力してください">
-
+        
         <textarea id="prompt" readonly></textarea>
         <button onclick="generatePrompt()">プロンプトを生成</button>
         <button onclick="copyPrompt()">プロンプトをコピー</button>
-
+        
         <p>このプロンプトをAIに入力して、応募企業の詳細情報を収集してください。</p>
     </div>
-
+    
     <script>
         function generatePrompt() {
             const companyName = document.getElementById('companyName').value || '[企業名]';
@@ -99,10 +120,10 @@
 17. 最新のトレンドや業界動向
 
 できるだけ具体的で詳細な情報を提供し、学生が面接準備に活用できるようにしてください。`;
-
+            
             document.getElementById('prompt').value = prompt;
         }
-
+        
         function copyPrompt() {
             const promptText = document.getElementById('prompt');
             promptText.select();
